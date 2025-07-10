@@ -1,0 +1,34 @@
+
+
+POST http://localhost:3000/events/fetch
+
+###
+
+GET http://localhost:3000/events/686fda77e75a38f655edcd08
+
+###
+
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+    "name": "Toronto Jazz Festival",
+    "description": "Enjoy world-class jazz performances from international artists.",
+    "location": "Yonge-Dundas Square, Toronto, ON",
+    "link": "https://www.torontojazz.com",
+    "price": "Free",
+    "dateTime": "2025-07-10T19:00:00",
+    "image": "https://infopetitenation.ca/wp-content/uploads/2025/06/toronto-jazz-festival-150.jpeg",
+    "latitude": 43.656,
+    "longitude": -79.3801
+    
+}
+
+###
+
+DELETE http://localhost:3000/events
+
+###
+
+DELETE http://localhost:3000/events/686fda77e75a38f655edcd08
+
