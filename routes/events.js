@@ -61,11 +61,11 @@ router.delete("/", async (req, res) => {
   }
 });
 
-// POST /events/fetch — manually pull from Eventbrite now
+// Manually trigger the Eventbrite sync
 router.post("/fetch", async (req, res, next) => {
   try {
     await fetchAndStore();
-    res.json({ message: "Manual Eventbrite sync complete" });
+    res.json({ message: "Eventbrite sync triggered successfully!" });
   } catch (err) {
     next(err);
   }

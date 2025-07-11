@@ -1,4 +1,5 @@
-const { fetchTorontoNextWeek } = require("../services/eventbrite");
+const mongoose = require("mongoose");
+const { fetchTorontoEvents } = require("../services/eventbrite");
 const Event = require("../models/event");
 
 async function fetchAndStore() {
@@ -6,7 +7,7 @@ async function fetchAndStore() {
   let totalPages;
 
   do {
-    const { events, pagination } = await fetchTorontoNextWeek(page);
+    const { events, pagination } = await fetchTorontoEvents(page);
     totalPages = pagination.page_count;
 
     for (const e of events) {
