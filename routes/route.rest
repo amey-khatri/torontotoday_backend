@@ -851,3 +851,8 @@ GET http://localhost:3000/venues/
 ###
 
 DELETE http://localhost:3000/venues/
+
+###
+
+POST http://localhost:3000/events/fetch-events
+

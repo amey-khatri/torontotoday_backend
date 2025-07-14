@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Event = require("../models/event");
 const { fetchAndStore } = require("../scheduler/fetchEvents");
+const { fetchAllEvents } = require("../services/eventbrite");
 
 // Get all events
 router.get("/", async (req, res) => {
@@ -85,5 +86,16 @@ async function getEvent(req, res, next) {
   req.event = event;
   next();
 }
+
+// Fetch all events at given venues
+router.post("/fetch-events", async (req, res) => {
+  try {
+    await fetchAllEvents();
+    res.json({ message: "Events fetched and stored successfully." });
+  } catch (err) {
+    console.error("Error fetching events:", err);
+    res.status(500).json({ error: "Failed to fetch events" });
+  }
+});
 
 module.exports = router;
