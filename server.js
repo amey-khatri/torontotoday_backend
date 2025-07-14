@@ -14,6 +14,10 @@ app.use(express.json());
 const eventsRouter = require("./routes/events");
 app.use("/events", eventsRouter);
 
+// new venues route
+const venuesRouter = require("./routes/venues");
+app.use("/venues", venuesRouter);
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
