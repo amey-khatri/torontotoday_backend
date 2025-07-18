@@ -3,15 +3,16 @@ const mongoose = require("mongoose");
 const eventSchema = new mongoose.Schema({
   eventbriteId: { type: String, required: true, unique: true },
   name: { type: String, required: true },
-  description: String,
-  category: String,
-  startTime: Date,
-  endTime: Date,
-  url: String,
-  image: String,
+  description: { type: String },
+  category: { type: String },
+  startTime: { type: Date, required: true },
+  endTime: { type: Date, required: true },
+  url: { type: String },
+  image: { type: String },
+  address: { type: String }, // Add this line
   location: {
-    latitude: Number,
-    longitude: Number,
+    latitude: { type: Number, required: true },
+    longitude: { type: Number, required: true }
   },
   fetchedAt: { type: Date, default: Date.now },
 });

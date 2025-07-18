@@ -20,6 +20,11 @@ async function fetchVenue(eventid) {
   return {
     id: venue.id.toString(),
     name: venue.name,
+    address: venue.address.localized_address_display,
+    location: {
+      latitude: venue.latitude,
+      longitude: venue.longitude,
+    },
   };
 }
 
@@ -30,11 +35,15 @@ async function processEvents(eventIds = [], concurrency = 10) {
   const venues = results.filter((venue) => venue); // Removes null values
 
   if (venues.length) {
-    const ops = venues.map(({ id, name }) => ({
+    const ops = venues.map(({ id, name, address, location }) => ({
       updateOne: {
         filter: { venueid: id },
         update: {
-          $set: { venueName: name },
+          $set: {
+            venueName: name,
+            venueAddress: address,
+            venueLocation: location,
+          },
           $setOnInsert: { venueid: id },
         },
         upsert: true,
