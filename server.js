@@ -14,7 +14,6 @@ app.use(express.json());
 const eventsRouter = require("./routes/events");
 app.use("/events", eventsRouter);
 
-// new venues route
 const venuesRouter = require("./routes/venues");
 app.use("/venues", venuesRouter);
 

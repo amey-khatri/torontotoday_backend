@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Event = require("../models/event");
+const Venue = require("../models/venue");
 const { fetchAndStore } = require("../scheduler/fetchEvents");
-const { fetchAllEvents } = require("../services/eventbrite");
+const {
+  fetchAllEvents,
+  fetchEventsAtVenue,
+} = require("../services/eventbrite");
 
 // Get all events
 router.get("/", async (req, res) => {
@@ -72,6 +76,22 @@ router.post("/fetch-events", async (req, res) => {
   } catch (err) {
     console.error("Error fetching events:", err);
     res.status(500).json({ error: "Failed to fetch events" });
+  }
+});
+
+router.post("/fetch-events-at-venue", async (req, res) => {
+  const id = 269026003;
+  const venue = await Venue.findOne({ venueid: id });
+  if (!venue || !venue.venueid) {
+    return res.status(400).json({ error: "Must provide a valid venue" });
+  }
+
+  try {
+    const events = await fetchEventsAtVenue(venue);
+    res.json(events);
+  } catch (err) {
+    console.error("Error fetching events at venue:", err);
+    res.status(500).json({ error: "Failed to fetch events at venue" });
   }
 });
 

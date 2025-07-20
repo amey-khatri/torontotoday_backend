@@ -5,6 +5,7 @@ const eventSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String },
   category: { type: String },
+  price: { type: String }, // Add this line
   startTime: { type: Date, required: true },
   endTime: { type: Date, required: true },
   url: { type: String },
@@ -12,7 +13,7 @@ const eventSchema = new mongoose.Schema({
   address: { type: String }, // Add this line
   location: {
     latitude: { type: Number, required: true },
-    longitude: { type: Number, required: true }
+    longitude: { type: Number, required: true },
   },
   fetchedAt: { type: Date, default: Date.now },
 });
