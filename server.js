@@ -17,6 +17,9 @@ app.use("/events", eventsRouter);
 const venuesRouter = require("./routes/venues");
 app.use("/venues", venuesRouter);
 
+const event_idsRouter = require("./routes/event_ids");
+app.use("/event_ids", event_idsRouter);
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });

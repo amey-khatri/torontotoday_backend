@@ -12,7 +12,10 @@ const {
 router.get("/", async (req, res) => {
   try {
     const events = await Event.find();
-    res.json(events);
+    res.json({
+      count: events.length,
+      events: events,
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

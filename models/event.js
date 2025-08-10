@@ -11,6 +11,7 @@ const eventSchema = new mongoose.Schema({
   url: { type: String },
   image: { type: String },
   address: { type: String }, // Add this line
+  venueName: { type: String }, // Add this line
   location: {
     latitude: { type: Number, required: true },
     longitude: { type: Number, required: true },
