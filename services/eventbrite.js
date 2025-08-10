@@ -1,6 +1,5 @@
 // services/eventbrite.js
 const axios = require("axios");
-const Venue = require("../models/venue");
 const Event = require("../models/event"); // Add this import
 const Event_ids = require("../models/event_id"); // Add this import
 const pl = require("p-limit");
