@@ -17,6 +17,8 @@ const eventSchema = new mongoose.Schema({
     longitude: { type: Number, required: true },
   },
   fetchedAt: { type: Date, default: Date.now },
+  organizer: { type: String }, // Add this line
+  format: { type: String }, // Add this line
 });
 
 module.exports = mongoose.model("Event", eventSchema);
