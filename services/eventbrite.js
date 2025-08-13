@@ -1,6 +1,5 @@
 // services/eventbrite.js
 const axios = require("axios");
-const Venue = require("../models/venue");
 const Event = require("../models/event"); // Add this import
 const Event_ids = require("../models/event_id"); // Add this import
 const pl = require("p-limit");
@@ -56,7 +55,7 @@ async function fetchEventData(event_scraped) {
   try {
     await new Promise((resolve) => setTimeout(resolve, 100));
     const res = await client.get(
-      `events/${event_id}/?expand=venue,organizer,ticket_availability,category`
+      `events/${event_id}/?expand=venue,organizer,ticket_availability,category,format`
     );
     const event = res.data;
 
@@ -153,16 +152,21 @@ async function fetchAllEvents(concurrency = 10) {
               name: event.name?.text || "",
               description: event.description?.text || "",
               category,
-              price: price || "Free",
+              price: price || "0.00",
               startTime: event.start?.local
                 ? new Date(event.start.local)
                 : undefined,
               endTime: event.end?.local ? new Date(event.end.local) : undefined,
               url: event.url,
-              image: event.logo?.url || "",
+              image:
+                event.logo?.url ||
+                "https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png",
               address,
               venueName,
               location: { latitude, longitude },
+              fetchedAt: now,
+              organizer: event.organizer?.name || "",
+              format: event.format?.name || "",
             },
           },
           upsert: true,

@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Event = require("../models/event");
-const Venue = require("../models/venue");
 const Event_id = require("../models/event_id");
 
 // Get all event IDs
